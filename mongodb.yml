@@ -7,7 +7,7 @@
         dest: /etc/yum.repos.d/mongodb.repo
     - name: installing mongodb server
       ansible.builtin.yum:
-       - name: mongodb-org
+         name: mongodb-org
          state: latest
 
     - name: updating mongodb config
