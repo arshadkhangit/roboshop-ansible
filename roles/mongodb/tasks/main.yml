@@ -1,28 +1,24 @@
-- name: mongodb setup
-  hosts: all
-  become: yes
-  tasks:
-    - name: copy mongodb repo
-      ansible.builtin.copy:
-        src: mongodb.repo
-        dest: /etc/yum.repos.d/mongodb.repo
+- name: copy mongodb repo
+  ansible.builtin.copy:
+    src: mongodb.repo
+    dest: /etc/yum.repos.d/mongodb.repo
 
-    - name: installing mongodb server
-      ansible.builtin.yum:
-        name: mongodb-org
-        state: latest
+- name: installing mongodb server
+  ansible.builtin.yum:
+    name: mongodb-org
+    state: latest
 
-    - name: updating mongodb config
-      ansible.builtin.replace:
-        path: /etc/mongod.conf
-        regexp: '127.0.0.1'
-        replace: '0.0.0.0'
+- name: updating mongodb config
+  ansible.builtin.replace:
+    path: /etc/mongod.conf
+    regexp: '127.0.0.1'
+    replace: '0.0.0.0'
 
-    - name: Starting mongodb server
-      ansible.builtin.systemd:
-        state: restarted
-        name: mongod
-        enabled: true
+- name: Starting mongodb server
+  ansible.builtin.systemd:
+    state: restarted
+    name: mongod
+    enabled: true
 
 
 
