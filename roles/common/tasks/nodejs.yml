@@ -6,6 +6,10 @@
      name: nodejs
      state: installed
 
+- name: load app_presetup
+  ansible.builtin.import_tasks:
+    file: app_presetup.yml
+
 
 
 
