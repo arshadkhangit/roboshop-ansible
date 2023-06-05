@@ -3,7 +3,3 @@
     name: common
     tasks_from: maven
 
-- name: Load Mysql Schema
-  ansible.builtin.import_role:
-    name: common
-    tasks_from: mysql_schema_setup
