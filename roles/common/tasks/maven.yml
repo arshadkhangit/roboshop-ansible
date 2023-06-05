@@ -1,0 +1,33 @@
+
+#echo -e "${color} Cleaning package ${nocolor}"
+#mvn clean package &>>$log_file
+#mv target/$component-1.0.jar $component.jar &>>$log_file
+#stat_check $?
+#
+#mysql_schema_setup
+#
+#systemd_setup
+
+- name: Installing Maven
+  ansible.builtin.yum:
+    name: maven
+    state: installed
+
+- name: load app_presetup
+  ansible.builtin.import_tasks:
+    file: app_presetup.yml
+
+- name: Download Maven dependecies
+  ansible.builtin.shell: mvn clean package ; mv target/{{ component }}-1.0.jar {{ component }}.yml
+  args:
+    chdir: /app
+
+- name: load mysql_schema_setup
+  ansible.builtin.import_tasks:
+    file: mysql_schema_setup.yml
+
+- name: Systemd setup
+  ansible.builtin.import_tasks:
+    file: systemd_setup.yml
+
+
