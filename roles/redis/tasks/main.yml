@@ -4,7 +4,7 @@
     state: installed
 
 - name: Enabling Redis version 6
-  ansible.builtin.shell: yum module enable redis:remi-6.2
+  ansible.builtin.shell: yum module enable redis:remi-6.2 -y
 
 - name: Installing Redis
   ansible.builtin.dnf:
