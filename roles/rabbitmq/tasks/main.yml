@@ -23,9 +23,3 @@
     read_priv: .*
     write_priv: .*
     state: present
-
-
-#echo -e "${color} Adding Username and password ${nocolor}"
-#rabbitmqctl add_user roboshop roboshop123 &>>/tmp/roboshop.log
-#rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*" &>>/tmp/roboshop.log
-#stat_check $?
